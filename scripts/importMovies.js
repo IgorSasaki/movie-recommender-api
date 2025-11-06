@@ -135,7 +135,7 @@ function parseMoviesFromSQL(sqlContent) {
   const movies = [];
 
   // Encontra o bloco INSERT INTO ... VALUES
-  const insertMatch = sqlContent.match(/INSERT INTO `moviedb`[^V]+VALUES\s*([\s\S]+);/i);
+  const insertMatch = sqlContent.match(/INSERT INTO `moviedb`([\s\S]+);/i);
 
   if (!insertMatch) {
     console.error('❌ Formato de SQL não reconhecido');
