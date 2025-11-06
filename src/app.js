@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import { env } from './config/env.js';
+import { errorHandler } from './middlewares/errorHandler.js';
 
 export const createApp = () => {
   const app = express();
@@ -16,6 +17,8 @@ export const createApp = () => {
   // 2) Healthcheck
   app.get('/health', (_req, res) => res.json({ ok: true }));
 
+  // 4) Middleware de tratamento de erros
+  app.use(errorHandler);
   
   return app;
 };
