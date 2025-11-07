@@ -4,7 +4,7 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js", 
+    "start": "node src/server.js",
     "import": "node scripts/importMovies.js",
     "check": "node scripts/checkMovies.js"
   },
@@ -22,6 +22,7 @@
     "jsonwebtoken": "^9.0.2",
     "sequelize": "^6.37.7",
     "sqlite3": "^5.1.7",
+    "uuid": "^13.0.0",
     "zod": "^4.1.12"
   }
 }

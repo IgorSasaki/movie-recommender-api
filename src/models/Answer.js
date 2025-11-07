@@ -8,21 +8,16 @@ export const Answer = database.define('Answer', {
     autoIncrement: true
   },
   sessionId: {
-    type: DataTypes.UUID,
+    type: DataTypes.STRING(36), // UUID como string
     allowNull: false,
-    field: 'session_id',
-    references: {
-      model: 'sessions',
-      key: 'id'
-    },
-    onDelete: 'CASCADE'
+    field: 'session_id'
   },
   question: {
     type: DataTypes.STRING(100),
     allowNull: false
   },
   answer: {
-    type: DataTypes.STRING(255),
+    type: DataTypes.JSON,
     allowNull: false
   }
 }, {
@@ -30,9 +25,9 @@ export const Answer = database.define('Answer', {
   timestamps: true,
   underscored: true,
   indexes: [
-    {
-      unique: true,
-      fields: ['session_id', 'question']
-    }
+    { fields: ['session_id'] },
+    { fields: ['question'] },
+    { fields: ['session_id', 'question'], unique: true }
   ]
 });
+
