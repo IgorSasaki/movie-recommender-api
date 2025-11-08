@@ -1,9 +1,9 @@
 import { database } from "../config/database.js";
 import { env } from "../config/env.js";
 
-import { Movie } from "./Movie.js";
-import { Answer } from "./Answer.js";
-import { Question } from "./Question.js";
+import { Movie } from "./Movie.js"
+import { Question } from "./Question.js"
+import { Answer } from "./Answer.js"
 
 if (env.nodeEnv === 'development') {
     database.sync({ alter: true })
