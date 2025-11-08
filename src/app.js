@@ -6,6 +6,7 @@ import { env } from './config/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { authRouter } from './routes/auth.routes.js';
 import { questionRouter } from './routes/question.routes.js';
+import { answerRouter } from './routes/answer.routes.js';
 
 export const createApp = () => {
   const app = express();
@@ -22,6 +23,7 @@ export const createApp = () => {
   // 3) Rotas da aplicação
   app.use("/auth", authRouter())
   app.use("/questions", questionRouter())
+  app.use("/answers", answerRouter())
 
   // 4) Middleware de tratamento de erros
   app.use(errorHandler);

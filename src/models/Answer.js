@@ -1,3 +1,4 @@
+// src/models/Answer.js
 import { DataTypes } from 'sequelize';
 import { database } from '../config/database.js';
 
@@ -8,26 +9,30 @@ export const Answer = database.define('Answer', {
     autoIncrement: true
   },
   sessionId: {
-    type: DataTypes.STRING(36), // UUID como string
+    type: DataTypes.UUID,
     allowNull: false,
     field: 'session_id'
   },
-  question: {
-    type: DataTypes.STRING(100),
-    allowNull: false
+  questionId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'question_id',
+    references: {
+      model: 'questions',
+      key: 'id'
+    }
   },
   answer: {
     type: DataTypes.JSON,
-    allowNull: false
+    allowNull: false,
+    comment: 'Array de opções selecionadas pelo usuário'
   }
 }, {
   tableName: 'answers',
   timestamps: true,
-  underscored: true,
   indexes: [
     { fields: ['session_id'] },
-    { fields: ['question'] },
-    { fields: ['session_id', 'question'], unique: true }
+    { fields: ['question_id'] },
+    { fields: ['session_id', 'question_id'], unique: true }
   ]
 });
-
