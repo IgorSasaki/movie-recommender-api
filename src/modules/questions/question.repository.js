@@ -7,7 +7,12 @@ export const makeQuestionRepoSequelize = () => {
         return questions.map(q => q.toJSON());
     }
 
+    const findById = async (id) => {
+        const question = await Question.findByPk(id);
+        return question ? question.toJSON() : null;
+    }
+
     return {
-        findAll
+        findAll, findById
     }
 }
