@@ -25,7 +25,7 @@ export const ensureAuth = (request, _response, next) => {
     try {
         const payload = jwt.verify(token, env.jwtSecret)
 
-        request.user = { id: payload.sub }
+        request.session = { sessionId: payload.sub }
 
         return next()
     } catch (error) {
