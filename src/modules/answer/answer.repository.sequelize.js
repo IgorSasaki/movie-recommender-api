@@ -1,4 +1,5 @@
-import { Answer, Question } from "../../models";
+import { Answer } from "../../models/Answer.js";
+import { Question } from "../../models/Question.js";
 
 export const makeAnswerRepoSequelize = () => {
     const upsert = async ({ sessionId, questionId, answer }) => {
@@ -18,7 +19,7 @@ export const makeAnswerRepoSequelize = () => {
                 {
                     model: Question,
                     as: 'question',
-                    attributes: ['id', 'text', 'options']
+                    attributes: ['text']
                 }
             ]
         });
