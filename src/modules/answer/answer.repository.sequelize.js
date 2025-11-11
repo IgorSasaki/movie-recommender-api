@@ -27,6 +27,21 @@ export const makeAnswerRepoSequelize = () => {
         return result.toJSON();
     }
 
+    const findBySession = async (sessionId) => {
+        const answers = await Answer.findAll({
+            where: { sessionId },
+            include: [
+                {
+                    model: Question,
+                    as: 'question',
+                    attributes: ['id', 'text', 'options']
+                }
+            ],
+        });
+
+        return answers.map(a => a.toJSON());
+    }
+
     const findById = async (id) => {
         const answer = await Answer.findByPk(id, {
             include: [
@@ -49,10 +64,24 @@ export const makeAnswerRepoSequelize = () => {
         return await Answer.count({ where: { sessionId } });
     }
 
+    const isSessionComplete = async (sessionId) => {
+        const totalQuestions = await Question.count();
+        const answeredQuestions = await countBySession(sessionId);
+
+        return {
+            total: totalQuestions,
+            answered: answeredQuestions,
+            isComplete: answeredQuestions >= totalQuestions,
+            percentage: Math.round((answeredQuestions / totalQuestions) * 100)
+        };
+    }
+
     return {
         upsert,
         findById,
         deleteBySession,
-        countBySession
+        countBySession,
+        isSessionComplete,
+        findBySession
     }
 }
