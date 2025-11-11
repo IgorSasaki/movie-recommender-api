@@ -10,7 +10,7 @@ export const makeAnswerController = () => {
 
             const result = await service.createOrUpdate({ sessionId, questionId, answer });
 
-            return success(response, result, 'Resposta salva com sucesso', 201);
+            return response.status(201).json(result)
         } catch (error) {
             next(error);
         }
