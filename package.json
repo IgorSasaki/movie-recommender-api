@@ -6,7 +6,8 @@
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
     "import": "node scripts/importMovies.js",
-    "check": "node scripts/checkMovies.js"
+    "check": "node scripts/checkMovies.js",    
+    "seed:questions": "npx sequelize-cli db:seed --seed 20251107234824-questions.cjs"
   },
   "repository": "https://github.com/IgorSasaki/movie-recommender-api.git",
   "author": "IgorSasaki <igor-sasaki@hotmail.com>",
