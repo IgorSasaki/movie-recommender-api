@@ -1,4 +1,3 @@
-// src/models/Answer.js
 import { DataTypes } from 'sequelize';
 import { database } from '../config/database.js';
 

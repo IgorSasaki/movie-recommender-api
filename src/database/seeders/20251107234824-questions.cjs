@@ -78,6 +78,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('questions', null, {});
+    // await queryInterface.bulkDelete('questions', null, {});
   }
 };
